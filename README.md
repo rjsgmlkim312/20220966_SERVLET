@@ -50,3 +50,5 @@ To watch some usage guides, visit [https://help.goorm.io/en/goormide](https://he
 
 ### 9월 6일 : 쇼핑몰 메인 페이지 실행/수정 완료
 
+### 9월 13일 : 겜모 메인 페이지 수정 
+
