@@ -15,4 +15,4 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-<Context path="/sss" docBase="" workDir="work" reloadable="true" privileged="true" />
+<Context path="/" docBase="" workDir="work" reloadable="true" privileged="true" />
