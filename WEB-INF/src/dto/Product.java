@@ -72,6 +72,15 @@ public class Product implements Serializable { // 인터페이스 선언
     public void setCategory(String category) {
         this.category = category;
     }
+/*    
+    public long getUnitsInStock() {
+		return unitsInStock;
+	}
+
+	public void setUnitsInStock(long unitsInStock) {
+		this.unitsInStock = unitsInStock;
+	}
+*/
     
     public String getCondition() {
 		return condition;

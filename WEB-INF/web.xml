@@ -1,2 +1,8 @@
 <web-app>
+    <!-- 기존 설정들 -->
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/exception/main_server_downtime.jsp</location>
+    </error-page>
 </web-app>
