@@ -11,7 +11,10 @@ public class Product implements Serializable { // 인터페이스 선언
     private String description; //상품 설명
     private String manufacturer;//제조사
     private String category; 	//분류
+    //private String UnitsInStock; // 재고 수
     private String condition; 	//출시일자
+    private String filename; 	// 파일 이름 변수
+
 
 
     public Product() {
@@ -89,4 +92,14 @@ public class Product implements Serializable { // 인터페이스 선언
 	public void setCondition(String condition) {
 		this.condition = condition;
 	}
+    
+    public void setFilename(String filename) { // 파일 이름 설정
+	this.filename = filename;
+    }    
+    
+    public String getFilename() { // 파일 이름 리턴
+	return filename;
+    }
+
+
 }
