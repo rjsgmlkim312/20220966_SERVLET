@@ -49,7 +49,7 @@
 	</div>
 
     <div class="card bg-dark text-white">
-        <img src="Image/Game.png" class="card-img" alt="...">
+        <img src="../Image/Game.png" class="card-img" alt="...">
             <div class="card-img-overlay">
                 <h5 class="card-title">Game Type</h5>
                 <p class="card-text">출처 : Poki</p>
