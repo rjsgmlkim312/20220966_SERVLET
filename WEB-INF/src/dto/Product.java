@@ -14,6 +14,8 @@ public class Product implements Serializable { // 인터페이스 선언
     //private String UnitsInStock; // 재고 수
     private String condition; 	//출시일자
     private String filename; 	// 파일 이름 변수
+    private int quantity;	//장바구니에 담은 개수
+
 
 
 
@@ -100,6 +102,12 @@ public class Product implements Serializable { // 인터페이스 선언
     public String getFilename() { // 파일 이름 리턴
 	return filename;
     }
+    
+    public int getQuantity() {
+	return quantity;
+    }
 
-
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }
