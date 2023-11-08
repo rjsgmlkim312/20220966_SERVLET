@@ -46,7 +46,7 @@
 				<%--p><b>재고 수</b> : <%=product.getUnitsInStock()%--%>
 				<h4><%=product.getUnitPrice()%>원</h4>
                 <p><form name="addForm" action="../cart/product_cart_add.jsp?id=<%=product.getProductId()%>" method="post">
-			        <a href="#" class="btn btn-info" onclick="addToCart()"> 상품 주문 &raquo;</a> 
+			        <a href="#" class="btn btn-info" onclick="addToCart()"> 장바구니 담기 &raquo;</a> 
 			        <a href="../cart/product_cart.jsp" class="btn btn-warning"> 장바구니 &raquo;</a>
 	        </form>
                 <div class="card bg-dark text-white">
