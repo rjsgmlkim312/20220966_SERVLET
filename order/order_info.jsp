@@ -36,7 +36,13 @@
                     <input type="date" id="deliveryDate" name="shippingDate" class="form-control" required />
                 </div>
             </div>
-
+            <script>
+                // 현재 날짜를 계산하여 'min' 속성에 설정
+                var today = new Date();
+                today.setDate(today.getDate() + 1); // 내일로 설정
+                var formattedDate = today.toISOString().split('T')[0]; // YYYY-MM-DD 형식
+                document.getElementById("deliveryDate").setAttribute("min", formattedDate);
+            </script>
             <div class="form-group row">
                 <label for="country" class="col-sm-2 col-form-label">국가명</label>
                 <div class="col-sm-3">
