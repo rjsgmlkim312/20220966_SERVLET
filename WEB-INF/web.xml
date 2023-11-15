@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app>
     <!-- 기존 설정들 -->
-    <security-role>
+    <!--security-role>
     <role-name>admin</role-name>
-    </security-role>
+    </security-role-->
 
     <security-role>
         <role-name>manage</role-name>
     </security-role>
     
-<security-constraint>
+<!--security-constraint>
     <display-name>WebMarket Security_01</display-name>
     <web-resource-collection>
         <web-resource-name>WebMarket</web-resource-name>
@@ -20,7 +20,7 @@
         <description>권한 관리자명</description>
         <role-name>admin</role-name>
     </auth-constraint>
-</security-constraint>
+</security-constraint-->
 
 <security-constraint>
     <display-name>WebMarket Security_02</display-name>
