@@ -153,37 +153,38 @@ public class Board_dao {
 		return null;
 	}
 //board 테이블에 새로운 글 삽입하기
-	public void insertBoard(Board_dto board)  {
-	
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		try {
-			conn = Db_connection.getConnection();		
-			String sql = "insert into board values(?, ?, ?, ?, ?, ?, ?, ?)";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, board.getNum());
-			pstmt.setString(2, board.getId());
-			pstmt.setString(3, board.getName());
-			pstmt.setString(4, board.getSubject());
-			pstmt.setString(5, board.getContent());
-			pstmt.setString(6, board.getRegist_day());
-			pstmt.setInt(7, board.getHit());
-			pstmt.setString(8, board.getIp());
+public void insertBoard(Board_dto board) {
+    Connection conn = null;
+    PreparedStatement pstmt = null;
+    try {
+        conn = Db_connection.getConnection();
+        String sql = "insert into board values(?, ?, ?, ?, ?, ?, ?, ?)";
+        pstmt = conn.prepareStatement(sql);
 
-			pstmt.executeUpdate();
-		} catch (Exception ex) {
-			System.out.println("insertBoard() 에러 : " + ex);
-		} finally {
-			try {									
-				if (pstmt != null) 
-					pstmt.close();				
-				if (conn != null) 
-					conn.close();
-			} catch (Exception ex) {
-				throw new RuntimeException(ex.getMessage());
-			}		
-		}		
-	} 
+        // Ensure UTF-8 encoding for strings before setting values in PreparedStatement
+        pstmt.setInt(1, board.getNum());
+        pstmt.setString(2, board.getId());
+        pstmt.setString(3, new String(board.getName().getBytes("UTF-8"), "UTF-8"));
+        pstmt.setString(4, new String(board.getSubject().getBytes("UTF-8"), "UTF-8"));
+        pstmt.setString(5, new String(board.getContent().getBytes("UTF-8"), "UTF-8"));
+        pstmt.setString(6, board.getRegist_day());
+        pstmt.setInt(7, board.getHit());
+        pstmt.setString(8, board.getIp());
+
+        pstmt.executeUpdate();
+    } catch (Exception ex) {
+        System.out.println("insertBoard() 에러 : " + ex);
+    } finally {
+        try {
+            if (pstmt != null)
+                pstmt.close();
+            if (conn != null)
+                conn.close();
+        } catch (Exception ex) {
+            throw new RuntimeException(ex.getMessage());
+        }
+    }
+}
 //선택된 글의 조회수 증가하기
 	public void updateHit(int num) {
 		Connection conn = null;

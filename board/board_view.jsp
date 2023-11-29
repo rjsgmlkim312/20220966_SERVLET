@@ -1,7 +1,6 @@
 <%@ page contentType = "text/html;charset=utf-8" %>
-<%@ taglib prefix="c" uri=http://java.sun.com/jsp/jstl/core%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="mvc.model.Board_dto"%>
-
 <%
      Board_dto notice = (Board_dto) request.getAttribute("board");
      int num = ((Integer) request.getAttribute("num")).intValue();
@@ -50,8 +49,11 @@
 		<c:if test="${sessionId==userId}">
 		<p>
 		<a href="./BoardDeleteAction.do?num=<%=notice.getNum()%>&pageNum=<%=nowpage%>" class="btn btn-danger"> 삭제</a> 
-			<input type="submit" class="btn btn-success" value="수정 ">
+			<input type="submit" class="btn btn-success" value="수정">
 		</c:if>
+           		<p>
+		<a href="./BoardDeleteAction.do?num=<%=notice.getNum()%>&pageNum=<%=nowpage%>" class="btn btn-danger"> 삭제</a> 
+			<input type="submit" class="btn btn-success" value="수정">
 		<a href="./BoardListAction.do?pageNum=<%=nowpage%>" class="btn btn-primary"> 목록</a>
 	   </div>
 	</div>
