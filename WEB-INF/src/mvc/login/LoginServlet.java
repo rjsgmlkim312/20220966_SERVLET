@@ -1,53 +1,65 @@
-import java.io.*;
-import java.sql.*;
-import javax.servlet.*;
-import javax.servlet.http.*;
-import mvc.database.Db_connection; // Assuming this class handles DB connections
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import mvc.database.Db_connection;
+
+@WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username = request.getParameter("j_username");
-        String password = request.getParameter("j_password");
-        boolean isValidUser = validateUser(username, password);
+    private static final long serialVersionUID = 1L;
 
-        if (isValidUser) {
-            // If the user is valid, set session attribute and redirect to a success page
-            HttpSession session = request.getSession();
-            session.setAttribute("username", username);
-            response.sendRedirect("success.jsp"); // Replace with your success page
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+
+    String m_id = request.getParameter("j_username");
+    String m_pw = request.getParameter("j_password");
+
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+
+    try {
+        conn = Db_connection.getConnection(); // 데이터베이스 연결을 가져옵니다.
+
+        // 사용자명과 비밀번호가 일치하는지 확인합니다.
+        String query = "SELECT id,password,name FROM member WHERE id= ?";
+        ps = conn.prepareStatement(query);
+        ps.setString(1, m_id);
+        rs = ps.executeQuery();
+
+        if (rs.next()) { // 일치하는 사용자가 발견된 경우
+            if (m_pw.equals(rs.getString("password"))) {
+                HttpSession session = request.getSession();
+                session.setAttribute("user_name", rs.getString("name"));
+            }
+            // 성공 페이지로 리디렉션하거나 추가 처리를 수행합니다.
+            response.sendRedirect("/index.jsp");
         } else {
-            // If the user is not valid, redirect back to the login page with an error parameter
-            response.sendRedirect("login.jsp?error=true"); // Replace with your login page
+            // 로그인 페이지로 에러 파라미터와 함께 리디렉션합니다.
+            response.sendRedirect("/login_user.jsp?error=invalid");
         }
-    }
-
-    // Method to validate user credentials against the database
-    private boolean validateUser(String username, String password) {
-        boolean isValid = false;
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-
+    } catch (SQLException e) {
+        e.printStackTrace(); // 잠재적인 오류 처리 - 로그 기록 또는 오류 페이지로 리디렉션
+    } catch (ClassNotFoundException e) {
+        e.printStackTrace(); // Db_connection 클래스를 찾지 못한 경우의 처리
+    } finally {
+        // 리소스를 닫습니다.
         try {
-            conn = Db_connection.getConnection(); // Get your DB connection
-            String query = "SELECT * FROM member WHERE id=? AND password=?";
-            pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, username);
-            pstmt.setString(2, password);
-            rs = pstmt.executeQuery();
-            isValid = rs.next(); // Check if any results were returned
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            if (conn != null) conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            // Close connections
-            try {
-                if (rs != null) rs.close();
-                if (pstmt != null) pstmt.close();
-                if (conn != null) conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
         }
-        return isValid;
     }
 }

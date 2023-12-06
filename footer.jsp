@@ -12,3 +12,4 @@
             오늘 날짜와 시간 <%=time.timenow() %>
         </p>
 </footer>
+
