@@ -23,8 +23,8 @@
             <!-- 비밀번호 찾기 폼 -->
             <form class="form-signin" method="post" action="FindPasswordServlet">
                 <div class="form-group">
-                    <label for="inputUsername" class="sr-only">Username</label>
-                    <input type="text" class="form-control" id="inputUsername" placeholder="Username" name='username' required>
+                    <label for="inputUsername" class="sr-only">ID</label>
+                    <input type="text" class="form-control" id="inputId" name='id' required>
                 </div>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Find Password</button>
             </form>

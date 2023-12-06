@@ -22,8 +22,8 @@
             <!-- 아이디 찾기 폼 -->
             <form class="form-signin" method="post" action="FindIdServlet">
                 <div class="form-group">
-                    <label for="inputEmail" class="sr-only">Email</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" name='email' required>
+                    <label for="inputEmail" class="sr-only">Name</label>
+                    <input type="email" class="form-control" id="inputName" name='name' required>
                 </div>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Find ID</button>
             </form>
