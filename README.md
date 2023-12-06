@@ -52,3 +52,7 @@ To watch some usage guides, visit [https://help.goorm.io/en/goormide](https://he
 
 ### 9월 13일 : 겜모 메인 페이지 수정 
 
+### 보고서 작성 한글 파일로 메일과 같이 제출
+
+### 추가 기능 구현 아이디 및 비밀번호 찾기
+
